@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0F1212;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F1212;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #253FF6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E1FF01;
+}
+
+/* Neon glow animation */
+@keyframes neonPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(225, 255, 1, 0.8)) drop-shadow(0 0 40px rgba(225, 255, 1, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(225, 255, 1, 1)) drop-shadow(0 0 60px rgba(225, 255, 1, 0.6));
+  }
+}
+
+.neon-glow {
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 20s linear infinite;
+}
+
+/* Gradient border animation */
+@keyframes gradientRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradientRotate 3s ease infinite;
+}
+
+/* Geometric shapes */
+.quarter-circle {
+  border-radius: 0 0 100% 0;
+}
+
+.quarter-circle-reverse {
+  border-radius: 100% 0 0 0;
+}
+
+/* Mobile safe areas */
+.telegram-safe-bottom {
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
