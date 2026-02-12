@@ -365,7 +365,7 @@ const TestimonialCard = ({ quote, author, role, delay = 0 }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-[#1a1a1a] border border-gray-800 rounded-3xl p-6 md:p-8 relative overflow-hidden group hover:border-gray-700 transition-colors"
+      className="bg-[#1a1a1a] rounded-3xl p-6 md:p-8 relative overflow-hidden group hover:border-gray-700 transition-colors"
     >
       <p className="text-gray-400 mb-6 leading-relaxed relative z-10 text-sm">
         "{quote}"
@@ -708,7 +708,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <PricingCard
               plan="Старт"
-              price="$0"
+              price="1150 ₽"
               features={[
                 "3 проекта",
                 "Базовые шаблоны",
@@ -719,7 +719,7 @@ function App() {
             />
             <PricingCard
               plan="Про"
-              price="$19"
+              price="2200 ₽"
               features={[
                 "Неограниченные проекты",
                 "Премиум шаблоны",
@@ -732,7 +732,7 @@ function App() {
             />
             <PricingCard
               plan="Команда"
-              price="$49"
+              price="4500 ₽"
               features={[
                 "Всё из Про",
                 "5 мест команде",
@@ -742,6 +742,29 @@ function App() {
               ]}
               delay={0.2}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section - Moved below pricing, no borders */}
+      <section className="py-20 md:py-32 px-4 md:px-6">
+        <div className="container mx-auto max-w-6xl">
+          <AnimatedSection className="mb-12">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-white tracking-tight">
+              ЧТО ГОВОРЯТ КЛИЕНТЫ
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                quote={testimonial.quote}
+                author={testimonial.author}
+                role={testimonial.role}
+                delay={index * 0.1}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -813,76 +836,62 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials Section - Moved to bottom, simplified */}
-      <section className="py-20 md:py-32 px-4 md:px-6 border-t border-gray-800/50">
-        <div className="container mx-auto max-w-6xl">
-          <AnimatedSection className="mb-12">
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-white tracking-tight">
-              ЧТО ГОВОРЯТ КЛИЕНТЫ
+      {/* Footer - Full screen, lime background, black text */}
+      <footer className="min-h-screen bg-[#E1FF01] flex flex-col justify-center items-center px-4 md:px-6 relative overflow-hidden telegram-safe-bottom">
+        <div className="container mx-auto flex flex-col items-center justify-center text-center">
+          {/* Large text - Webly AI in black, not all caps */}
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-8"
+          >
+            <h2 className="font-display font-bold text-[15vw] md:text-[12vw] text-black leading-none tracking-tighter">
+              Webly AI
             </h2>
-          </AnimatedSection>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                quote={testimonial.quote}
-                author={testimonial.author}
-                role={testimonial.role}
-                delay={index * 0.1}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 md:py-20 px-4 md:px-6 border-t border-gray-800 bg-[#0a0a0a] telegram-safe-bottom">
-        <div className="container mx-auto">
-          {/* Large text */}
-          <div className="overflow-hidden mb-12">
-            <motion.h2
-              initial={{ y: 100, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="font-display font-bold text-[12vw] md:text-[10vw] text-white leading-none text-center whitespace-nowrap tracking-tighter"
-            >
-              WEBLY AI
-            </motion.h2>
-          </div>
-
-          {/* Social links */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <img
-                src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770857255-8525.svg?"
-                alt="Webly AI Logo"
-                className="w-8 h-8"
-              />
-              <span className="font-display font-bold text-white">Webly AI</span>
-            </div>
-
-            <div className="flex items-center gap-6">
-              <a href="#" className="text-[#E1FF01] hover:scale-110 transition-transform">
-                <SafeIcon name="twitter" size={24} />
-              </a>
-              <a href="#" className="text-[#E1FF01] hover:scale-110 transition-transform">
-                <SafeIcon name="instagram" size={24} />
-              </a>
-              <a href="#" className="text-[#E1FF01] hover:scale-110 transition-transform">
-                <SafeIcon name="github" size={24} />
-              </a>
-              <a href="#" className="text-[#E1FF01] hover:scale-110 transition-transform">
-                <SafeIcon name="linkedin" size={24} />
-              </a>
-            </div>
-
-            <p className="text-gray-500 text-sm">
-              © 2024 Webly AI. Все права защищены.
+          {/* Made with Webly AI and year */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-12"
+          >
+            <p className="text-black/60 text-sm md:text-base font-medium tracking-wide">
+              made with Webly AI • 2026
             </p>
-          </div>
+          </motion.div>
+
+          {/* Social links - black icons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex items-center gap-8"
+          >
+            <a href="#" className="text-black hover:scale-110 transition-transform">
+              <SafeIcon name="twitter" size={28} />
+            </a>
+            <a href="#" className="text-black hover:scale-110 transition-transform">
+              <SafeIcon name="instagram" size={28} />
+            </a>
+            <a href="#" className="text-black hover:scale-110 transition-transform">
+              <SafeIcon name="github" size={28} />
+            </a>
+            <a href="#" className="text-black hover:scale-110 transition-transform">
+              <SafeIcon name="linkedin" size={28} />
+            </a>
+          </motion.div>
         </div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-10 left-10 w-32 h-32 border-4 border-black/10 rounded-full" />
+        <div className="absolute bottom-20 right-10 w-48 h-48 border-4 border-black/10 rounded-full" />
+        <div className="absolute top-1/3 right-20 w-16 h-16 bg-black/10 rounded-full" />
       </footer>
     </div>
   )
