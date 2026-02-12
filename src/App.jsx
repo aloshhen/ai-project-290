@@ -20,6 +20,57 @@ const staggerContainer = {
   }
 }
 
+// Global Background with moving gradient spots
+const GlobalBackground = () => (
+  <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <motion.div
+      animate={{
+        x: [0, 30, 0],
+        y: [0, -20, 0],
+        scale: [1, 1.1, 1]
+      }}
+      transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute top-20 right-0 w-96 h-96 bg-[#253FF6]/20 rounded-full blur-3xl"
+    />
+    <motion.div
+      animate={{
+        x: [0, -20, 0],
+        y: [0, 30, 0],
+        scale: [1, 1.2, 1]
+      }}
+      transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+      className="absolute bottom-40 left-0 w-72 h-72 bg-[#E1FF01]/10 rounded-full blur-3xl"
+    />
+    <motion.div
+      animate={{
+        x: [0, 40, 0],
+        y: [0, 20, 0],
+        scale: [1, 0.9, 1]
+      }}
+      transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      className="absolute top-1/2 left-1/4 w-64 h-64 bg-[#253FF6]/10 rounded-full blur-2xl"
+    />
+    <motion.div
+      animate={{
+        x: [0, -30, 0],
+        y: [0, -40, 0],
+        scale: [1, 1.15, 1]
+      }}
+      transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 8 }}
+      className="absolute top-1/3 right-1/4 w-80 h-80 bg-[#E1FF01]/5 rounded-full blur-3xl"
+    />
+    <motion.div
+      animate={{
+        x: [0, 50, 0],
+        y: [0, 10, 0],
+        scale: [1, 1.05, 1]
+      }}
+      transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+      className="absolute bottom-1/4 right-1/3 w-56 h-56 bg-[#253FF6]/15 rounded-full blur-2xl"
+    />
+  </div>
+)
+
 // Section wrapper with scroll animation
 const AnimatedSection = ({ children, className = '', delay = 0 }) => {
   const ref = useRef(null)
@@ -44,7 +95,7 @@ const Marquee = () => {
   const text = "WEBLY AI /// БЕЗ КОДА /// ЧИСТАЯ МАГИЯ /// ДИЗАЙН БЫСТРЕЕ /// БУДУЩЕЕ УЖЕ ЗДЕСЬ /// "
 
   return (
-    <div className="bg-[#253FF6] py-3 overflow-hidden">
+    <div className="bg-[#253FF6] py-3 overflow-hidden relative z-10">
       <div className="marquee-track flex whitespace-nowrap">
         {[...Array(4)].map((_, i) => (
           <span
@@ -118,7 +169,7 @@ const HowItWorks = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 min-h-[500px] lg:min-h-[600px]">
       {/* Left Side - Input */}
-      <div className="bg-[#1a1a1a] rounded-3xl lg:rounded-r-none p-6 md:p-10 flex flex-col justify-center border border-gray-800 lg:border-r-0">
+      <div className="bg-[#1a1a1a] rounded-3xl lg:rounded-r-none p-6 md:p-10 flex flex-col justify-center border border-gray-800 lg:border-r-0 relative z-10">
         <div className="mb-6">
           <div className="inline-flex items-center gap-2 bg-[#E1FF01]/10 border border-[#E1FF01]/30 rounded-full px-3 py-1 mb-4">
             <SafeIcon name="sparkles" size={14} className="text-[#E1FF01]" />
@@ -183,7 +234,7 @@ const HowItWorks = () => {
       </div>
 
       {/* Right Side - Preview */}
-      <div className="bg-[#0a0a0a] rounded-3xl lg:rounded-l-none p-6 md:p-10 flex flex-col justify-center border border-gray-800 relative overflow-hidden">
+      <div className="bg-[#0a0a0a] rounded-3xl lg:rounded-l-none p-6 md:p-10 flex flex-col justify-center border border-gray-800 relative overflow-hidden z-10">
         {/* Background grid */}
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: 'radial-gradient(circle at 1px 1px, #E1FF01 1px, transparent 0)',
@@ -315,7 +366,7 @@ const PricingCard = ({ plan, price, features, isPopular = false, delay = 0 }) =>
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
-      className={`relative rounded-3xl p-6 md:p-8 ${isPopular ? 'bg-[#253FF6] ring-4 ring-[#253FF6]/30' : 'bg-[#1a1a1a] border border-gray-800'} flex flex-col`}
+      className={`relative rounded-3xl p-6 md:p-8 ${isPopular ? 'bg-[#253FF6] ring-4 ring-[#253FF6]/30' : 'bg-[#1a1a1a] border border-gray-800'} flex flex-col z-10`}
     >
       {isPopular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#E1FF01] text-black px-4 py-1.5 rounded-full text-sm font-bold shadow-lg shadow-[#E1FF01]/20">
@@ -365,7 +416,7 @@ const TestimonialCard = ({ quote, author, role, delay = 0 }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-[#1a1a1a] rounded-3xl p-6 md:p-8 relative overflow-hidden group hover:border-gray-700 transition-colors"
+      className="bg-[#1a1a1a] rounded-3xl p-6 md:p-8 relative overflow-hidden group hover:border-gray-700 transition-colors z-10"
     >
       <p className="text-gray-400 mb-6 leading-relaxed relative z-10 text-sm">
         "{quote}"
@@ -425,6 +476,24 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
 // Main App Component
 function App() {
   const [openFAQ, setOpenFAQ] = useState(0)
+  const [isNavHidden, setIsNavHidden] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  // Smart navigation - hide on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsNavHidden(true)
+      } else {
+        setIsNavHidden(false)
+      }
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
 
   // Smooth scroll implementation - lighter version
   useEffect(() => {
@@ -504,15 +573,18 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F1212] overflow-x-hidden">
-      {/* Navigation */}
-      <header className="fixed top-0 w-full bg-[#0F1212]/90 backdrop-blur-md z-50 border-b border-gray-800/50">
+    <div className="min-h-screen bg-[#0F1212] overflow-x-hidden relative">
+      {/* Global animated background */}
+      <GlobalBackground />
+
+      {/* Navigation - hides on scroll down, shows on scroll up */}
+      <header className={`fixed top-0 w-full bg-[#0F1212]/90 backdrop-blur-md z-50 border-b border-gray-800/50 transition-transform duration-300 ${isNavHidden ? '-translate-y-full' : 'translate-y-0'}`}>
         <nav className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
               src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770857255-8525.svg?"
               alt="Webly AI Logo"
-              className="w-10 h-10 neon-glow"
+              className="w-10 h-10"
             />
             <span className="font-display font-bold text-white text-xl tracking-tight">Webly AI</span>
           </div>
@@ -535,30 +607,9 @@ function App() {
         </nav>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-24 px-4 md:px-6 overflow-hidden">
-        {/* Background geometric shapes */}
-        <div className="absolute top-20 right-0 w-96 h-96 bg-[#253FF6]/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-0 w-72 h-72 bg-[#E1FF01]/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-[#253FF6]/10 rounded-full blur-2xl" />
-
+      {/* Hero Section - without logo and local background spots */}
+      <section className="relative min-h-screen flex items-center justify-center pt-24 px-4 md:px-6 overflow-hidden z-10">
         <div className="container mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-8"
-          >
-            {/* Logo with neon glow */}
-            <div className="relative inline-block mb-6">
-              <img
-                src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770857255-8525.svg?"
-                alt="Webly AI Logo"
-                className="w-20 h-20 md:w-28 md:h-28 mx-auto neon-glow"
-              />
-            </div>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -625,7 +676,7 @@ function App() {
       <Marquee />
 
       {/* How it Works Section */}
-      <section id="how-it-works" className="py-20 md:py-32 px-4 md:px-6">
+      <section id="how-it-works" className="py-20 md:py-32 px-4 md:px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <AnimatedSection className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 bg-[#253FF6]/20 border border-[#253FF6]/30 rounded-full px-4 py-2 mb-6">
@@ -647,7 +698,7 @@ function App() {
       </section>
 
       {/* Bento Grid Section */}
-      <section id="features" className="py-20 md:py-32 px-4 md:px-6">
+      <section id="features" className="py-20 md:py-32 px-4 md:px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
@@ -694,7 +745,7 @@ function App() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-20 md:py-32 px-4 md:px-6">
+      <section id="pricing" className="py-20 md:py-32 px-4 md:px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
@@ -746,8 +797,8 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials Section - Moved below pricing, no borders */}
-      <section className="py-20 md:py-32 px-4 md:px-6">
+      {/* Testimonials Section */}
+      <section className="py-20 md:py-32 px-4 md:px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <AnimatedSection className="mb-12">
             <h2 className="font-display font-bold text-3xl md:text-4xl text-white tracking-tight">
@@ -770,7 +821,7 @@ function App() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-20 md:py-32 px-4 md:px-6">
+      <section id="faq" className="py-20 md:py-32 px-4 md:px-6 relative z-10">
         <div className="container mx-auto max-w-3xl">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
@@ -798,7 +849,7 @@ function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 px-4 md:px-6 relative overflow-hidden">
+      <section className="py-20 md:py-32 px-4 md:px-6 relative overflow-hidden z-10">
         {/* Background effects */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0F1212] via-[#253FF6]/10 to-[#0F1212]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E1FF01]/5 rounded-full blur-3xl" />
@@ -836,10 +887,20 @@ function App() {
         </div>
       </section>
 
-      {/* Footer - Full screen, lime background, black text */}
-      <footer className="min-h-screen bg-[#E1FF01] flex flex-col justify-center items-center px-4 md:px-6 relative overflow-hidden telegram-safe-bottom">
-        <div className="container mx-auto flex flex-col items-center justify-center text-center">
-          {/* Large text - Webly AI in black, not all caps */}
+      {/* Footer - with smooth lime fill animation */}
+      <footer className="min-h-screen relative flex flex-col justify-center items-center px-4 md:px-6 overflow-hidden telegram-safe-bottom z-10">
+        {/* Animated background fill - scales up from bottom */}
+        <motion.div
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 bg-[#E1FF01] origin-bottom"
+        />
+
+        {/* Content */}
+        <div className="container mx-auto flex flex-col items-center justify-center text-center relative z-10">
+          {/* Large text - Webly AI in black */}
           <motion.div
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
