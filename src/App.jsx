@@ -800,10 +800,13 @@ function App() {
       {/* Testimonials Section */}
       <section className="py-20 md:py-32 px-4 md:px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
-          <AnimatedSection className="mb-12">
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-white tracking-tight">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
               ЧТО ГОВОРЯТ КЛИЕНТЫ
             </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Реальные истории успеха от наших пользователей
+            </p>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -848,12 +851,8 @@ function App() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 md:py-32 px-4 md:px-6 relative overflow-hidden z-10">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F1212] via-[#253FF6]/10 to-[#0F1212]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E1FF01]/5 rounded-full blur-3xl" />
-
+      {/* CTA Section - unified background */}
+      <section className="py-20 md:py-32 px-4 md:px-6 relative z-10">
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -887,17 +886,8 @@ function App() {
         </div>
       </section>
 
-      {/* Footer - with smooth lime fill animation */}
-      <footer className="min-h-screen relative flex flex-col justify-center items-center px-4 md:px-6 overflow-hidden telegram-safe-bottom z-10">
-        {/* Animated background fill - scales up from bottom */}
-        <motion.div
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 bg-[#E1FF01] origin-bottom"
-        />
-
+      {/* Footer - lime background immediately, no animation */}
+      <footer className="min-h-screen bg-[#E1FF01] relative flex flex-col justify-center items-center px-4 md:px-6 overflow-hidden telegram-safe-bottom z-10">
         {/* Content */}
         <div className="container mx-auto flex flex-col items-center justify-center text-center relative z-10">
           {/* Large text - Webly AI in black */}
