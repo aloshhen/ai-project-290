@@ -12,28 +12,11 @@ const fadeInUp = {
   }
 }
 
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.6 }
-  }
-}
-
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-  }
-}
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
   }
 }
 
@@ -77,15 +60,14 @@ const Marquee = () => {
 }
 
 // Bento Grid Card
-const BentoCard = ({ title, description, icon, size = 'normal', color = 'lime' }) => {
-  const isLarge = size === 'large'
+const BentoCard = ({ title, description, icon, color = 'lime' }) => {
   const bgColor = color === 'blue' ? 'bg-[#253FF6]' : 'bg-[#1a1a1a]'
   const borderColor = color === 'lime' ? 'border-[#E1FF01]/30' : 'border-[#253FF6]/30'
 
   return (
     <motion.div
       whileHover={{ scale: 1.02, y: -5 }}
-      className={`relative overflow-hidden rounded-3xl border ${borderColor} ${bgColor} p-6 md:p-8 ${isLarge ? 'md:col-span-2 md:row-span-2' : ''} group cursor-pointer transition-shadow hover:shadow-2xl hover:shadow-[#E1FF01]/10`}
+      className={`relative overflow-hidden rounded-3xl border ${borderColor} ${bgColor} p-6 md:p-8 group cursor-pointer transition-shadow hover:shadow-2xl hover:shadow-[#E1FF01]/10 h-full`}
     >
       {/* Geometric decoration */}
       <div className={`absolute ${color === 'lime' ? 'bg-[#E1FF01]/10' : 'bg-white/10'} quarter-circle w-32 h-32 -top-10 -right-10 transition-transform group-hover:scale-150 duration-500`} />
@@ -101,7 +83,7 @@ const BentoCard = ({ title, description, icon, size = 'normal', color = 'lime' }
             className={color === 'lime' ? 'text-black' : 'text-[#253FF6]'}
           />
         </div>
-        <h3 className={`font-display font-bold text-white ${isLarge ? 'text-2xl md:text-3xl' : 'text-xl'} mb-2`}>
+        <h3 className={`font-display font-bold text-white text-xl mb-2`}>
           {title}
         </h3>
         <p className="text-gray-400 text-sm md:text-base leading-relaxed">
@@ -383,13 +365,9 @@ const TestimonialCard = ({ quote, author, role, delay = 0 }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-[#1a1a1a] border border-gray-800 rounded-3xl p-6 md:p-8 relative overflow-hidden group hover:border-[#E1FF01]/30 transition-colors"
+      className="bg-[#1a1a1a] border border-gray-800 rounded-3xl p-6 md:p-8 relative overflow-hidden group hover:border-gray-700 transition-colors"
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-[#E1FF01]/5 rounded-full blur-3xl group-hover:bg-[#E1FF01]/10 transition-colors" />
-
-      <SafeIcon name="quote" size={32} className="text-[#253FF6] mb-4 opacity-50" />
-
-      <p className="text-gray-300 mb-6 leading-relaxed relative z-10">
+      <p className="text-gray-400 mb-6 leading-relaxed relative z-10 text-sm">
         "{quote}"
       </p>
 
@@ -515,21 +493,6 @@ function App() {
       quote: "Экономия времени и денег колоссальная. То, что раньше занимало неделю, теперь делается за час.",
       author: "Дмитрий С.",
       role: "Основатель стартапа"
-    },
-    {
-      quote: "Наконец-то инструмент, который понимает меня с полуслова. Описал видение — получил идеальный сайт.",
-      author: "Елена В.",
-      role: "Фотограф"
-    },
-    {
-      quote: "Интеграция с Telegram ботом — это гениально. Могу управлять сайтом прямо с телефона.",
-      author: "Артем П.",
-      role: "SMM-специалист"
-    },
-    {
-      quote: "Поддержка отвечает моментально, а обновления выходят каждую неделю. Ощущение, что продукт действительно живой.",
-      author: "Ольга М.",
-      role: "Предприниматель"
     }
   ]
 
@@ -547,7 +510,7 @@ function App() {
         <nav className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
-              src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770856529-5530.svg?"
+              src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770857255-8525.svg?"
               alt="Webly AI Logo"
               className="w-10 h-10 neon-glow"
             />
@@ -557,7 +520,6 @@ function App() {
           <div className="hidden md:flex items-center gap-8">
             <button onClick={() => scrollToSection('how-it-works')} className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Как это работает</button>
             <button onClick={() => scrollToSection('features')} className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Возможности</button>
-            <button onClick={() => scrollToSection('testimonials')} className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Отзывы</button>
             <button onClick={() => scrollToSection('pricing')} className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Тарифы</button>
             <button onClick={() => scrollToSection('faq')} className="text-gray-400 hover:text-white transition-colors text-sm font-medium">FAQ</button>
           </div>
@@ -590,7 +552,7 @@ function App() {
             {/* Logo with neon glow */}
             <div className="relative inline-block mb-6">
               <img
-                src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770856529-5530.svg?"
+                src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770857255-8525.svg?"
                 alt="Webly AI Logo"
                 className="w-20 h-20 md:w-28 md:h-28 mx-auto neon-glow"
               />
@@ -663,7 +625,7 @@ function App() {
       <Marquee />
 
       {/* How it Works Section */}
-      <section id="how-it-works" className="py-20 md:py-32 px-4 md:px-6 bg-[#0a0a0a]">
+      <section id="how-it-works" className="py-20 md:py-32 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <AnimatedSection className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 bg-[#253FF6]/20 border border-[#253FF6]/30 rounded-full px-4 py-2 mb-6">
@@ -671,7 +633,7 @@ function App() {
               <span className="text-[#E1FF01] text-sm font-semibold uppercase tracking-wider">Простой процесс</span>
             </div>
             <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
-              КАК ЭТО <span className="text-[#253FF6]">РАБОТАЕТ</span>
+              КАК ЭТО РАБОТАЕТ
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Три простых шага от идеи до готового сайта. Попробуйте прямо сейчас.
@@ -689,7 +651,7 @@ function App() {
         <div className="container mx-auto max-w-6xl">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
-              ЧТО МОЖНО <span className="text-[#E1FF01]">СОЗДАТЬ</span>
+              ЧТО МОЖНО СОЗДАТЬ
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               От лендингов до сложных веб-приложений — ваши возможности безграничны
@@ -701,13 +663,12 @@ function App() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
           >
             <BentoCard
               title="Лендинги нового поколения"
               description="Высококонверсионные страницы с уникальным дизайном, созданные за минуты"
               icon="zap"
-              size="large"
               color="lime"
             />
             <BentoCard
@@ -720,46 +681,15 @@ function App() {
               title="Магазины, которые продают"
               description="Полнофункциональные e-commerce решения с интеграцией платежей"
               icon="shoppingBag"
-              color="lime"
+              color="blue"
             />
             <BentoCard
               title="Изучить документацию"
-              description="Подробные гайды и API reference для разработчиков →"
+              description="Подробные гайды и API reference для разработчиков"
               icon="fileText"
-              size="large"
-              color="blue"
+              color="lime"
             />
           </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 md:py-32 px-4 md:px-6 bg-[#0a0a0a]">
-        <div className="container mx-auto max-w-6xl">
-          <AnimatedSection className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-[#E1FF01]/10 border border-[#E1FF01]/30 rounded-full px-4 py-2 mb-6">
-              <SafeIcon name="heart" size={16} className="text-[#E1FF01]" />
-              <span className="text-[#E1FF01] text-sm font-semibold uppercase tracking-wider">Отзывы клиентов</span>
-            </div>
-            <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
-              ИХ <span className="text-[#E1FF01]">ВОСХИЩАЕТ</span>
-            </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Присоединяйтесь к тысячам довольных пользователей, которые уже создали свои сайты
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                quote={testimonial.quote}
-                author={testimonial.author}
-                role={testimonial.role}
-                delay={index * 0.1}
-              />
-            ))}
-          </div>
         </div>
       </section>
 
@@ -768,7 +698,7 @@ function App() {
         <div className="container mx-auto max-w-6xl">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
-              ТАРИФЫ ДЛЯ <span className="text-[#E1FF01]">ВЗЛЁТА</span>
+              ТАРИФЫ ДЛЯ ВЗЛЁТА
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Выберите подходящий план и начните создавать уже сегодня
@@ -817,11 +747,11 @@ function App() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-20 md:py-32 px-4 md:px-6 bg-[#0a0a0a]">
+      <section id="faq" className="py-20 md:py-32 px-4 md:px-6">
         <div className="container mx-auto max-w-3xl">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-4 tracking-tight">
-              ОТВЕТЫ НА <span className="text-[#E1FF01]">ВОПРОСЫ</span>
+              ОТВЕТЫ НА ВОПРОСЫ
             </h2>
             <p className="text-gray-400 text-lg">
               Всё, что вы хотели знать о Webly AI
@@ -883,8 +813,31 @@ function App() {
         </div>
       </section>
 
+      {/* Testimonials Section - Moved to bottom, simplified */}
+      <section className="py-20 md:py-32 px-4 md:px-6 border-t border-gray-800/50">
+        <div className="container mx-auto max-w-6xl">
+          <AnimatedSection className="mb-12">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-white tracking-tight">
+              ЧТО ГОВОРЯТ КЛИЕНТЫ
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                quote={testimonial.quote}
+                author={testimonial.author}
+                role={testimonial.role}
+                delay={index * 0.1}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="py-12 md:py-20 px-4 md:px-6 border-t border-gray-800 telegram-safe-bottom">
+      <footer className="py-12 md:py-20 px-4 md:px-6 border-t border-gray-800 bg-[#0a0a0a] telegram-safe-bottom">
         <div className="container mx-auto">
           {/* Large text */}
           <div className="overflow-hidden mb-12">
@@ -903,7 +856,7 @@ function App() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
               <img
-                src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770856529-5530.svg?"
+                src="https://oejgkvftpbinliuopipr.supabase.co/storage/v1/object/public/assets/user_347995964/edit-svg-1770857255-8525.svg?"
                 alt="Webly AI Logo"
                 className="w-8 h-8"
               />
